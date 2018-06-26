@@ -1,0 +1,14 @@
+<div fxLayout='column'
+     fxLayoutAlign='center center'
+     [ngClass]="{'full-screen': fullScreen}">
+
+  <mat-progress-spinner color="primary"
+                        diameter="50"
+                        mode="indeterminate">
+  </mat-progress-spinner>
+
+  <p>
+    {{message}}
+  </p>
+
+</div>

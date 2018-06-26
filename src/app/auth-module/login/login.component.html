@@ -1,0 +1,112 @@
+<!--
+
+LOGIN COMPONENT: View
+
+-->
+
+
+<!--  Loading bar -->
+<app-loading
+  fullScreen="true"
+  [message]="message"
+  *ngIf="loading">
+</app-loading>
+
+
+<section *ngIf="!loading"
+         class="account-container"
+         fxLayout='column'
+         fxLayoutAlign='center center'>
+
+  <form
+    novalidate
+    autocomplete="off"
+    [@visible]="visible"
+    [formGroup]="user"
+    (ngSubmit)="login()"
+    fxLayout="column">
+
+
+    <!--Close button for modal view-->
+    <div class="close-button">
+      <button type="button" mat-icon-button (click)="close()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+
+
+    <!--title-->
+    <div fxLayout="row"
+         fxLayoutAlign="start center">
+      <h1>Login</h1>
+
+      <span fxFlex></span>
+
+      <div fxLayout="row"
+           fxLayoutAlign="center center"
+           class="sign-up">
+        <p>Don’t have an account? </p>
+        <a routerLink="/sign-up">Sign Up</a>
+      </div>
+    </div>
+
+
+    <div fxLayout="row wrap"
+         fxLayoutAlign="center center">
+
+      <!-- email -->
+      <mat-form-field fxFlex>
+        <input type="email"
+               autofocus
+               matInput
+               placeholder="Email"
+               formControlName="email">
+        <mat-error *ngIf="user.get('email').touched && user.get('email').hasError('pattern')">
+          <strong>invalid email</strong>
+        </mat-error>
+        <mat-error *ngIf="user.get('email').touched && user.get('email').hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- password -->
+      <mat-form-field fxFlex>
+        <input matInput
+               type="password"
+               placeholder="Password"
+               formControlName="password">
+        <mat-error *ngIf="user.get('password').touched && user.get('password').hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+
+
+    <!--action buttons-->
+    <div fxLayout="row"
+         class="action-buttons"
+         fxLayoutAlign="start center">
+      <button mat-button
+              app-no-ink
+              [disabled]="loading"
+              type="button"
+              routerLink="/password-reset"
+              class="secondary-option">
+        Forgot Password
+      </button>
+
+      <span fxFlex></span>
+
+      <button mat-raised-button
+              class="submit-button"
+              type="submit"
+              [disabled]="loading || user.invalid">
+        LOGIN
+      </button>
+    </div>
+
+
+  </form>
+
+</section>

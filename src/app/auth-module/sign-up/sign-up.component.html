@@ -1,0 +1,171 @@
+<!--
+
+SIGN UP COMPONENT: View
+
+-->
+
+
+<!--  Loading bar -->
+<app-loading
+  fullScreen="true"
+  [message]="message"
+  *ngIf="loading">
+</app-loading>
+
+
+<section *ngIf="!loading"
+         class="account-container"
+         fxLayout='column'
+         fxLayoutAlign='center center'>
+
+  <form
+    novalidate
+    [@visible]="visible"
+    [formGroup]="account"
+    (ngSubmit)="signUp(account)"
+    fxLayout="column">
+
+    <!--Close button for modal view-->
+    <div class="close-button">
+      <button type="button" mat-icon-button (click)="close()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+
+
+    <!--title-->
+    <div fxLayout="row"
+         fxLayoutAlign="start center">
+      <h1>Sign Up</h1>
+
+      <span fxFlex></span>
+
+      <div fxLayout="row"
+           fxLayoutAlign="center center"
+           class="sign-up">
+        <p>Have an account? </p>
+        <a routerLink="/login">Login</a>
+      </div>
+    </div>
+
+
+    <div fxLayout="row wrap"
+         fxLayoutAlign="start center">
+
+      <!-- first name -->
+      <mat-form-field>
+        <input type="text"
+               matInput
+               autofocus
+               placeholder="First Name"
+               formControlName="first_name">
+        <mat-error *ngIf="account.get('first_name').touched && account.get('first_name').hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- last name -->
+      <mat-form-field>
+        <input type="text"
+               matInput
+               placeholder="Last Name"
+               formControlName="last_name">
+        <mat-error *ngIf="account.get('last_name').touched && account.get('last_name').hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+
+      <!--select profile-->
+      <!--<mat-form-field>-->
+        <!--<mat-select-->
+          <!--formControlName="profile_view_preference"-->
+          <!--placeholder="Select Profile">-->
+          <!--<mat-option value="ARTIST">Artist</mat-option>-->
+          <!--<mat-option value="COLLECTOR">Collector</mat-option>-->
+        <!--</mat-select>-->
+        <!--<mat-error-->
+          <!--*ngIf="auth.get('profile_view_preference').touched && auth.get('profile_view_preference').hasError('required')">-->
+          <!--<strong>required</strong>-->
+        <!--</mat-error>-->
+      <!--</mat-form-field>-->
+
+      <!-- email -->
+      <mat-form-field fxFlex="100">
+        <input type="email"
+               matInput
+               placeholder="Email"
+               formControlName="email">
+        <mat-error *ngIf="account.get('email').touched && account.get('email').hasError('pattern')">
+          <strong>invalid email</strong>
+        </mat-error>
+        <mat-error *ngIf="account.get('email').touched && account.get('email').hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- password -->
+      <mat-form-field>
+        <input matInput
+               type="password"
+               placeholder="Password"
+               formControlName="password">
+        <mat-error *ngIf="account.get('password').touched && account.get('password').hasError('minlength')">
+          <strong>min 8 characters required</strong>
+        </mat-error>
+        <mat-error *ngIf="account.get('password').touched && (account.get('password').hasError('required'))">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- confirm password -->
+      <mat-form-field>
+        <input matInput
+               type="password"
+               placeholder="Confirm Password"
+               formControlName="confirmPassword">
+        <mat-error *ngIf="account.get('confirmPassword').touched && account.get('confirmPassword').hasError('minlength')">
+          <strong>min 8 characters required</strong>
+        </mat-error>
+        <mat-error *ngIf="account.get('confirmPassword').touched && account.get('confirmPassword').hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="account.get('confirmPassword').touched && account.get('confirmPassword').hasError('validMatch')">
+          password's don't match
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+
+
+    <!--action buttons-->
+    <div fxLayout="row"
+         class="action-buttons"
+         fxLayoutAlign="start center">
+
+      <div class="i-agree" fxLayout="row" fxLayoutAlign="start center">
+        <mat-checkbox color="primary"
+                      formControlName="iAgree">
+        </mat-checkbox>
+        <span>
+            I agree to the
+            <a href="#" target="_blank">Terms & Conditions,</a>
+            <a href="#" target="_blank">Privacy Policy</a> and
+            <a href="#" target="_blank">Copyright Policy</a>
+        </span>
+      </div>
+
+      <span fxFlex></span>
+
+      <button mat-raised-button
+              class="submit-button"
+              color="primary"
+              type="submit"
+              [disabled]="loading || account.invalid">
+        SIGN UP
+      </button>
+    </div>
+
+  </form>
+
+</section>

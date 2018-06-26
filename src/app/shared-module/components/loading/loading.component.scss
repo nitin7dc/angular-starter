@@ -1,0 +1,18 @@
+@import '../../shared.style';
+
+div {
+
+  margin: 75px 0;
+  width: 100%;
+  p {
+    text-align: center;
+    font-size: medium;
+    margin: 18px 0 8px 8px;
+  }
+
+}
+
+.full-screen{
+  height: $app-min-height;
+  margin: 0 !important;
+}
