@@ -1,9 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
-import {AlertService, ApiService, UtilService} from '../../core-module/services';
-import {UserService} from '../user.service';
-import {AuthService} from '../auth.service';
+import {AlertService, ApiService, UserService, AuthService} from '../../core-module/services';
 
 @Component({
   selector: 'app-email-verification',
@@ -21,7 +19,6 @@ export class EmailVerificationComponent {
               private userService: UserService,
               private activatedRoute: ActivatedRoute,
               private apiService: ApiService,
-              private utilService: UtilService,
               private alertService: AlertService) {
 
     const queryParams = this.activatedRoute.snapshot.queryParams;
@@ -52,10 +49,9 @@ export class EmailVerificationComponent {
         this.loading = false;
         this.message = '';
         this.alertService.success('Email verification complete.');
-        // this.authService.setup(data.token);
-        // this.userService.set(data.user);
-        // this.router.navigateByUrl('home');
-        this.router.navigateByUrl('login');
+        this.authService.set(data.token);
+        this.userService.set(data.user);
+        this.router.navigateByUrl('home');
 
       }, error => {
 

@@ -4,8 +4,7 @@ import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/form
 
 import {environment} from '../../../environments/environment';
 
-import {AlertService, ApiService, UtilService} from '../../core-module/services';
-import {AuthService} from '../auth.service';
+import {AlertService, ApiService, UtilService, AuthService} from '../../core-module/services';
 
 @Component({
   selector: 'app-password-reset',
@@ -45,6 +44,10 @@ export class PasswordResetComponent {
 
   }
 
+
+  /**
+   * Setup reset form.
+   */
   setupForms() {
 
     this.user = new FormGroup({
@@ -68,6 +71,7 @@ export class PasswordResetComponent {
     });
 
   }
+
 
   /**
    * Validate token present in password reset link.
@@ -149,15 +153,21 @@ export class PasswordResetComponent {
   }
 
 
+  /**
+   *  Toggle between
+   *  - set password view
+   *  - request password view
+   *
+   * @param {string} target
+   */
   toggleView(target: string) {
+
     this.show.passwordSet = false;
     this.show.passwordReset = false;
     this.show[target] = true;
+
   }
 
-  login() {
-    this.router.navigateByUrl('/');
-  }
 
   /**
    * Validate if password & confirmPassword match
@@ -165,13 +175,15 @@ export class PasswordResetComponent {
    * @returns {Promise<any>}
    */
   validatePasswordMatch(control: AbstractControl) {
-    return new Promise((resolve, reject) => {
+
+    return new Promise((resolve) => {
       if (control.value === this.account.get('password').value) {
         return resolve(null);
       }
 
       return resolve({validMatch: true});
     });
+
   }
 
 }

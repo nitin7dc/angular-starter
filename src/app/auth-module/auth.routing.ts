@@ -1,30 +1,32 @@
-import {Routes} from '@angular/router';
+import {Routes, RouterModule} from '@angular/router';
 
 import {EmailVerificationComponent} from './email-verification/email-verification.component';
 import {LoginComponent} from './login/login.component';
 import {PasswordResetComponent} from './password-reset/password-reset.component';
 import {SignUpComponent} from './sign-up/sign-up.component';
 
-export const AuthRoutes: Routes = [
+const authRouting: Routes = [
   {
     path: 'auth',
     children: [
       {
-        path: '/login',
+        path: 'login',
         component: LoginComponent
       },
       {
-        path: '/sign-up',
+        path: 'sign-up',
         component: SignUpComponent
       },
       {
-        path: '/password-reset',
+        path: 'password-reset',
         component: PasswordResetComponent
       },
       {
-        path: '/email-verification',
+        path: 'email-verification',
         component: EmailVerificationComponent
       }
     ]
   }
 ];
+
+export const AuthRoutes = RouterModule.forChild(authRouting);

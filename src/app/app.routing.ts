@@ -6,17 +6,24 @@
 
 import {ModuleWithProviders} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+
 import {AuthGuard} from './guards/index';
+import {AuthModule} from './auth-module/auth.module';
 
 import {
-
   HomeComponent,
 } from './components';
+
+
 
 export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'auth',
+    loadChildren: () => AuthModule
   },
   {
     path: '**',

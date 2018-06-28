@@ -1,0 +1,65 @@
+@import "../../styles";
+
+.account-container {
+
+  form {
+
+    position: relative;
+    max-width: 90vw;
+    width: 700px;
+    padding: 50px 85px;
+    margin: 0 auto;
+    background: white;
+    @include mat-elevation(8);
+    @include border-radius(8px);
+
+    a {
+      color: black;
+      margin: 0 4px;
+    }
+
+    mat-form-field {
+      max-width: 85vw;
+      min-width: 220px;
+      margin: 8px 24px 8px 0;
+      flex: 1;
+    }
+
+    .action-buttons {
+      margin-top: 28px;
+    }
+
+    .submit-button {
+      width: 160px;
+      height: 45px;
+      color: white !important;
+      background-color: $primary !important;
+    }
+
+    .submit-button[disabled] {
+      background-color: rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 8px;
+      right: -55px;
+    }
+
+    .secondary-option {
+      text-decoration: underline;
+      color: grey;
+      margin: 0;
+      padding: 0;
+
+      &:hover {
+        background: transparent !important;
+      }
+
+      &:focus {
+        background: transparent !important;
+      }
+    }
+  }
+
+}

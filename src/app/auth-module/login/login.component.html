@@ -26,15 +26,6 @@ LOGIN COMPONENT: View
     (ngSubmit)="login()"
     fxLayout="column">
 
-
-    <!--Close button for modal view-->
-    <div class="close-button">
-      <button type="button" mat-icon-button (click)="close()">
-        <mat-icon>clear</mat-icon>
-      </button>
-    </div>
-
-
     <!--title-->
     <div fxLayout="row"
          fxLayoutAlign="start center">
@@ -46,7 +37,7 @@ LOGIN COMPONENT: View
            fxLayoutAlign="center center"
            class="sign-up">
         <p>Don’t have an account? </p>
-        <a routerLink="/sign-up">Sign Up</a>
+        <a routerLink="/auth/sign-up">Sign Up</a>
       </div>
     </div>
 
@@ -91,7 +82,7 @@ LOGIN COMPONENT: View
               app-no-ink
               [disabled]="loading"
               type="button"
-              routerLink="/password-reset"
+              routerLink="/auth/password-reset"
               class="secondary-option">
         Forgot Password
       </button>

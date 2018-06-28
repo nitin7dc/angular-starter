@@ -1,18 +1,23 @@
 import {Injectable} from '@angular/core';
-import {Observable, BehaviorSubject} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 
-import {User} from './user.model';
-import {AlertService, ApiService} from '../core-module/services';
+import {User} from '../../auth-module/user.model';
+import {AlertService,} from './alerts.service';
+import {ApiService} from './api.service';
 
 @Injectable()
 export class UserService {
 
-  private currentUser = new BehaviorSubject<User>(new User(null));
+  public currentUser = new BehaviorSubject<User>(new User(null));
   private loading = true;
 
   constructor(private apiService: ApiService,
               private alertService: AlertService) {
 
+  }
+
+  set(data) {
+    this.currentUser.next(new User(data));
   }
 
 

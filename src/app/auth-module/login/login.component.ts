@@ -5,9 +5,7 @@ import {trigger, state, transition, animate, style} from '@angular/animations';
 
 import {environment} from '../../../environments/environment';
 
-import {AlertService, ApiService, UtilService} from '../../core-module/services';
-import {UserService} from '../user.service';
-import {AuthService} from '../auth.service';
+import {AlertService, ApiService, UtilService, UserService, AuthService} from '../../core-module/services';
 
 @Component({
   selector: 'app-login',
@@ -52,19 +50,6 @@ export class LoginComponent {
   }
 
 
-  /**
-   * Animation & send to artworks page.
-   */
-  close() {
-
-    setTimeout(() => {
-      this.visible = 'hide';
-      this.router.navigateByUrl('/artworks');
-    }, 175);
-
-  }
-
-
   setupForms() {
 
     this.user = new FormGroup({
@@ -94,8 +79,8 @@ export class LoginComponent {
       .subscribe(data => {
 
         if (data.user.is_email_verified) {
-          // this.authService.setup(data.token);
-          // this.userService.set(data.user);
+          this.authService.set(data.token);
+          this.userService.set(data.user);
           return this.router.navigateByUrl('/');
         }
 

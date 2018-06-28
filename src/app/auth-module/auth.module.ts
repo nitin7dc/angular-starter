@@ -6,10 +6,10 @@ import {LoginComponent} from './login/login.component';
 import {PasswordResetComponent} from './password-reset/password-reset.component';
 import {SignUpComponent} from './sign-up/sign-up.component';
 
-import {UserService} from './user.service';
-import {AuthService} from './auth.service';
-
 import {SharedModule} from '../shared-module';
+import {CoreModule} from '../core-module';
+
+import {AuthRoutes} from './auth.routing';
 
 
 @NgModule({
@@ -20,8 +20,10 @@ import {SharedModule} from '../shared-module';
     SignUpComponent
   ],
   imports: [
+    AuthRoutes,
     CommonModule,
-    SharedModule
+    SharedModule,
+    CoreModule
   ],
   exports: [
     EmailVerificationComponent,
@@ -29,10 +31,7 @@ import {SharedModule} from '../shared-module';
     PasswordResetComponent,
     SignUpComponent
   ],
-  providers: [
-    AuthService,
-    UserService
-  ]
+  providers: []
 })
 
 export class AuthModule {

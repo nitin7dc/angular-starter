@@ -1,8 +1,8 @@
 import {Component, OnDestroy} from '@angular/core';
-import {ApiService} from './core-module/services';
-import {AuthService} from './auth-module/auth.service';
-import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+
+import {ApiService, AuthService} from './core-module/services';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +34,7 @@ export class AppComponent implements OnDestroy {
     this.authSubscription = this.apiService.authenticationFailEvent
       .subscribe(() => {
         this.authService.signOut();
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/auth/login');
       });
   }
 

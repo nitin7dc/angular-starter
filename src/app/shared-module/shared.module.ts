@@ -52,6 +52,7 @@ import {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -81,12 +82,14 @@ import {
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule,
-    FlexLayoutModule
+    MatTooltipModule
   ],
   exports: [
     ErrorPageComponent,
     LoadingComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -116,13 +119,7 @@ import {
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule,
-    FlexLayoutModule
-  ],
-  providers: [
-    ApiService,
-    AlertService,
-    UtilService
+    MatTooltipModule
   ]
 })
 export class SharedModule {

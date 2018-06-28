@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {MatMenuTrigger} from '@angular/material';
 import {Subscription} from 'rxjs';
 
-import {AuthService} from '../../auth-module/auth.service';
+import {AuthService} from '../../core-module/services';
 
 import {environment} from '../../../environments/environment';
 

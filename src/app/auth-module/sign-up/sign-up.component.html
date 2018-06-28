@@ -21,16 +21,9 @@ SIGN UP COMPONENT: View
   <form
     novalidate
     [@visible]="visible"
-    [formGroup]="account"
-    (ngSubmit)="signUp(account)"
+    [formGroup]="accountForm"
+    (ngSubmit)="signUp(accountForm)"
     fxLayout="column">
-
-    <!--Close button for modal view-->
-    <div class="close-button">
-      <button type="button" mat-icon-button (click)="close()">
-        <mat-icon>clear</mat-icon>
-      </button>
-    </div>
 
 
     <!--title-->
@@ -44,7 +37,7 @@ SIGN UP COMPONENT: View
            fxLayoutAlign="center center"
            class="sign-up">
         <p>Have an account? </p>
-        <a routerLink="/login">Login</a>
+        <a routerLink="/auth/login">Login</a>
       </div>
     </div>
 
@@ -59,10 +52,11 @@ SIGN UP COMPONENT: View
                autofocus
                placeholder="First Name"
                formControlName="first_name">
-        <mat-error *ngIf="account.get('first_name').touched && account.get('first_name').hasError('required')">
+        <mat-error *ngIf="accountForm.get('first_name').touched && accountForm.get('first_name').hasError('required')">
           <strong>required</strong>
         </mat-error>
       </mat-form-field>
+
 
       <!-- last name -->
       <mat-form-field>
@@ -70,25 +64,11 @@ SIGN UP COMPONENT: View
                matInput
                placeholder="Last Name"
                formControlName="last_name">
-        <mat-error *ngIf="account.get('last_name').touched && account.get('last_name').hasError('required')">
+        <mat-error *ngIf="accountForm.get('last_name').touched && accountForm.get('last_name').hasError('required')">
           <strong>required</strong>
         </mat-error>
       </mat-form-field>
 
-
-      <!--select profile-->
-      <!--<mat-form-field>-->
-        <!--<mat-select-->
-          <!--formControlName="profile_view_preference"-->
-          <!--placeholder="Select Profile">-->
-          <!--<mat-option value="ARTIST">Artist</mat-option>-->
-          <!--<mat-option value="COLLECTOR">Collector</mat-option>-->
-        <!--</mat-select>-->
-        <!--<mat-error-->
-          <!--*ngIf="auth.get('profile_view_preference').touched && auth.get('profile_view_preference').hasError('required')">-->
-          <!--<strong>required</strong>-->
-        <!--</mat-error>-->
-      <!--</mat-form-field>-->
 
       <!-- email -->
       <mat-form-field fxFlex="100">
@@ -96,13 +76,14 @@ SIGN UP COMPONENT: View
                matInput
                placeholder="Email"
                formControlName="email">
-        <mat-error *ngIf="account.get('email').touched && account.get('email').hasError('pattern')">
+        <mat-error *ngIf="accountForm.get('email').touched && accountForm.get('email').hasError('pattern')">
           <strong>invalid email</strong>
         </mat-error>
-        <mat-error *ngIf="account.get('email').touched && account.get('email').hasError('required')">
+        <mat-error *ngIf="accountForm.get('email').touched && accountForm.get('email').hasError('required')">
           <strong>required</strong>
         </mat-error>
       </mat-form-field>
+
 
       <!-- password -->
       <mat-form-field>
@@ -110,13 +91,14 @@ SIGN UP COMPONENT: View
                type="password"
                placeholder="Password"
                formControlName="password">
-        <mat-error *ngIf="account.get('password').touched && account.get('password').hasError('minlength')">
+        <mat-error *ngIf="accountForm.get('password').touched && accountForm.get('password').hasError('minlength')">
           <strong>min 8 characters required</strong>
         </mat-error>
-        <mat-error *ngIf="account.get('password').touched && (account.get('password').hasError('required'))">
+        <mat-error *ngIf="accountForm.get('password').touched && (accountForm.get('password').hasError('required'))">
           <strong>required</strong>
         </mat-error>
       </mat-form-field>
+
 
       <!-- confirm password -->
       <mat-form-field>
@@ -124,13 +106,13 @@ SIGN UP COMPONENT: View
                type="password"
                placeholder="Confirm Password"
                formControlName="confirmPassword">
-        <mat-error *ngIf="account.get('confirmPassword').touched && account.get('confirmPassword').hasError('minlength')">
+        <mat-error *ngIf="accountForm.get('confirmPassword').touched && accountForm.get('confirmPassword').hasError('minlength')">
           <strong>min 8 characters required</strong>
         </mat-error>
-        <mat-error *ngIf="account.get('confirmPassword').touched && account.get('confirmPassword').hasError('required')">
+        <mat-error *ngIf="accountForm.get('confirmPassword').touched && accountForm.get('confirmPassword').hasError('required')">
           <strong>required</strong>
         </mat-error>
-        <mat-error *ngIf="account.get('confirmPassword').touched && account.get('confirmPassword').hasError('validMatch')">
+        <mat-error *ngIf="accountForm.get('confirmPassword').touched && accountForm.get('confirmPassword').hasError('validMatch')">
           password's don't match
         </mat-error>
       </mat-form-field>
@@ -161,7 +143,7 @@ SIGN UP COMPONENT: View
               class="submit-button"
               color="primary"
               type="submit"
-              [disabled]="loading || account.invalid">
+              [disabled]="loading || accountForm.invalid">
         SIGN UP
       </button>
     </div>

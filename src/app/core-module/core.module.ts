@@ -3,8 +3,10 @@ import {CommonModule} from '@angular/common';
 import {
   ApiService,
   AlertService,
-  UtilService
-} from '../services';
+  UtilService,
+  AuthService,
+  UserService
+} from './services';
 
 @NgModule({
   declarations: [],
@@ -12,14 +14,13 @@ import {
     CommonModule
   ],
   exports: [
-    ApiService,
-    AlertService,
-    UtilService
   ],
   providers: [
     ApiService,
     AlertService,
-    UtilService
+    UtilService,
+    AuthService,
+    UserService
   ]
 })
 export class CoreModule {

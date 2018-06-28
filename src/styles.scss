@@ -1,5 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
-@import 'app/shared-module/shared.style';
+@import '~@angular/material/theming';
+
+@include mat-core();
+$my-app-primary: mat-palette($mat-indigo);
+$my-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+$my-app-warn:    mat-palette($mat-red);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
+
+$primary: mat-color($my-app-primary);
+$secondary: mat-palette($mat-amber, 500);
+$accent: mat-palette($mat-deep-orange, 500);
+$warn: mat-palette($mat-red, 800);
+
+
+// Material Icons
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+.material-icons.md-78 {
+  font-size: 78px;
+}
+
+
+// App wide variables
+
+$app-custom: #a5642d;
+$app-line-color: rgba(0, 0, 0, 0.12);
+$app-max-width: 1200px;
+$app-min-height: calc(100vh - 216px);
+$app-user-menu-height: 462px;
+$app-user-account-page-height: calc(100vh - 371px);
+$app-image-background: #eaeaea;
+
+
+// some sample mixins
+
+@mixin border-radius($radius: 6px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+
 
 body {
   margin: 0;

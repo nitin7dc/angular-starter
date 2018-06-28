@@ -19,7 +19,7 @@ export class AuthService {
    * Save token to local-storage.
    * @param token
    */
-  setToken(token: any) {
+  set(token: any) {
 
     localStorage.setItem('token', token);
     this.authState.next(true);

@@ -4,8 +4,9 @@ import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/form
 import {trigger, state, transition, animate, style} from '@angular/animations';
 
 import {AlertService, ApiService, UtilService} from '../../core-module/services';
-import {UserService} from '../user.service';
-import {AuthService} from '../auth.service';
+import {UserService} from '../../core-module/services/user.service';
+import {AuthService} from '../../core-module/services/auth.service';
+
 
 @Component({
   selector: 'app-sign-up',
@@ -28,7 +29,7 @@ export class SignUpComponent {
 
   loading = false;
   message = '';
-  account: FormGroup;
+  accountForm: FormGroup;
   invitationToken = null;
   visible = 'hide';
 
@@ -48,8 +49,8 @@ export class SignUpComponent {
     const queryParams = this.activatedRoute.snapshot.queryParams;
     if (queryParams && queryParams.token) {
       this.invitationToken = decodeURIComponent(queryParams.token);
-      this.account.patchValue({email: decodeURIComponent(queryParams.email)});
-      this.account.controls['email'].disable();
+      this.accountForm.patchValue({email: decodeURIComponent(queryParams.email)});
+      this.accountForm.controls['email'].disable();
     }
 
     setTimeout(() => {
@@ -59,21 +60,9 @@ export class SignUpComponent {
   }
 
 
-  /**
-   * Animation and send to artworks page.
-   */
-  close() {
-
-    setTimeout(() => {
-      this.visible = 'hide';
-      this.router.navigateByUrl('/artworks');
-    }, 175);
-
-  }
-
   prepareForms() {
 
-    this.account = new FormGroup({
+    this.accountForm = new FormGroup({
       first_name: new FormControl('', [Validators.required]),
       last_name: new FormControl('', [Validators.required]),
       email: new FormControl('', [
@@ -118,7 +107,7 @@ export class SignUpComponent {
     this.loading = true;
     this.message = 'signing up...';
 
-    this.apiService.post('/auth/signup', this.account.value)
+    this.apiService.post('/auth/signup', this.accountForm.value)
       .subscribe(data => {
 
         this.loading = false;
@@ -130,7 +119,7 @@ export class SignUpComponent {
 
         this.loading = false;
         this.message = '';
-        this.account.reset();
+        this.accountForm.reset();
         this.alertService.error(error);
 
       });
@@ -143,13 +132,15 @@ export class SignUpComponent {
    * @returns {Promise<any>}
    */
   validatePasswordMatch(control: AbstractControl) {
-    return new Promise((resolve, reject) => {
-      if (control.value === this.account.get('password').value) {
+
+    return new Promise((resolve) => {
+      if (control.value === this.accountForm.get('password').value) {
         return resolve(null);
       }
 
       return resolve({validMatch: true});
     });
+
   }
 
 
@@ -166,14 +157,14 @@ export class SignUpComponent {
 
     this.loading = true;
     this.message = 'signing up...';
-    const payload = this.account.getRawValue();
+    const payload = this.accountForm.getRawValue();
     payload.token = this.invitationToken;
 
     this.apiService.post('/auth/accept-invite', payload)
       .subscribe(data => {
 
-        // this.authService.setup(data.token);
-        // this.userService.set(data.user);
+        this.authService.set(data.token);
+        this.userService.set(data.user);
         this.loading = false;
         this.message = '';
         this.alertService.success('Sign-up Complete.');
@@ -182,7 +173,7 @@ export class SignUpComponent {
       }, error => {
         this.loading = false;
         this.message = '';
-        this.account.reset();
+        this.accountForm.reset();
         this.alertService.error(error);
       });
 
