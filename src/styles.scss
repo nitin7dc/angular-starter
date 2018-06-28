@@ -55,7 +55,9 @@ $app-image-background: #eaeaea;
   border-radius: $radius;
 }
 
-
+html{
+  font-family: 'Roboto', sans-serif;
+}
 
 body {
   margin: 0;
@@ -66,16 +68,19 @@ body {
   color: #212121;
 }
 
+
 .app-container {
   width: 100vw;
   max-width: $app-max-width;
   margin: 0 auto;
 }
 
+
 section {
   min-height: $app-min-height;
   z-index: 0;
 }
+
 
 app-header {
   position: fixed;
