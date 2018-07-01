@@ -107,12 +107,12 @@ export class SignUpComponent {
     this.loading = true;
     this.message = 'signing up...';
 
-    this.apiService.post('/auth/signup', this.accountForm.value)
+    this.apiService.post('/auth/sign-up', this.accountForm.value)
       .subscribe(data => {
 
         this.loading = false;
         this.message = '';
-        this.alertService.success('Check your email for activation link of your auth.');
+        this.alertService.success(data.message);
         this.router.navigateByUrl('/');
 
       }, error => {

@@ -34,7 +34,6 @@ export class AppComponent implements OnDestroy {
     this.authSubscription = this.apiService.authenticationFailEvent
       .subscribe(() => {
         this.authService.signOut();
-        this.router.navigateByUrl('/auth/login');
       });
   }
 

@@ -1,8 +1,8 @@
 @import '~@angular/material/theming';
 
 @include mat-core();
-$my-app-primary: mat-palette($mat-indigo);
-$my-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+$my-app-primary: mat-palette($mat-purple);
+$my-app-accent:  mat-palette($mat-lime);
 $my-app-warn:    mat-palette($mat-red);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 @include angular-material-theme($my-app-theme);
@@ -79,6 +79,8 @@ body {
 section {
   min-height: $app-min-height;
   z-index: 0;
+  max-width: 1100px;
+  margin: 66px auto;
 }
 
 

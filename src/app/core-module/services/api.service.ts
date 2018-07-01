@@ -24,7 +24,7 @@ export class ApiService {
     const token = localStorage.getItem('token');
     const options = {
       'Content-Type': 'application/json',
-      'Authorization': token,
+      'Authorization': token || '',
       'client-time': new Date().toISOString()
     };
     return new HttpHeaders(options);
@@ -154,7 +154,6 @@ export class ApiService {
   ): Observable<any> {
 
     const url = `${this.server.url}${path}`;
-    body = JSON.stringify(body);
     return this.http.post(
       url,
       body,

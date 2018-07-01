@@ -78,7 +78,7 @@ export class LoginComponent {
     this.apiService.post('/auth/login', this.user.value)
       .subscribe(data => {
 
-        if (data.user.is_email_verified) {
+        if (data.user.emailVerified) {
           this.authService.set(data.token);
           this.userService.set(data.user);
           return this.router.navigateByUrl('/');

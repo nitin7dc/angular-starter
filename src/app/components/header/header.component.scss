@@ -1,9 +1,21 @@
+@import "../../../styles";
 
-.menu {
-  margin: 0 8px;
-}
+.header-container{
 
-h1 {
-  font-weight: 400;
+  @include mat-elevation(4);
+
+  .menu {
+    margin: 0 8px;
+  }
+
+  h1 {
+    font-weight: 400;
+  }
+
+  .app-title{
+    outline: none;
+    cursor: pointer;
+  }
+
 }
 

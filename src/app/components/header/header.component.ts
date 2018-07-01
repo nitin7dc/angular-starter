@@ -14,18 +14,14 @@ import {environment} from '../../../environments/environment';
 })
 export class HeaderComponent implements OnDestroy, OnInit {
 
-  hideMenu = false;
-  authSubscription: Subscription;
+
   appName = environment.appName;
 
   @ViewChild('menu') menu: MatMenuTrigger;
   @Output() toggleMenu = new EventEmitter();
 
-  constructor(private authService: AuthService,
+  constructor(protected authService: AuthService,
               private router: Router) {
-
-    this.hideMenu = this.authService.hasLoggedIn();
-    this.listenToAuthUpdates();
 
   }
 
@@ -36,39 +32,6 @@ export class HeaderComponent implements OnDestroy, OnInit {
 
 
   ngOnDestroy() {
-
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
-    }
-
-  }
-
-
-  listenToAuthUpdates() {
-
-    this.authSubscription = this.authService.authState
-      .subscribe((data: boolean) => {
-        this.hideMenu = data;
-      });
-
-  }
-
-  /**
-   * Go to other pages of application.
-   * @param target
-   */
-  goTo(target: string) {
-
-    this.router.navigateByUrl(target);
-
-  }
-
-  /**
-   * Sign Out.
-   */
-  signOut() {
-
-    this.authService.signOut();
 
   }
 

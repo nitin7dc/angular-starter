@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
+import {Router} from '@angular/router';
 
 
 @Injectable()
@@ -7,7 +8,7 @@ export class AuthService {
 
   authState = new BehaviorSubject<boolean>(false);
 
-  constructor() {
+  constructor(private router: Router) {
 
     const token = localStorage.getItem('token');
     this.authState.next(!!token);
@@ -33,6 +34,7 @@ export class AuthService {
 
     localStorage.clear();
     this.authState.next(false);
+    this.router.navigateByUrl('/auth/login');
 
   }
 

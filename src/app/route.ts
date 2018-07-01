@@ -11,7 +11,8 @@ import {AuthGuard} from './core-module/guards/index';
 import {AuthModule} from './auth-module/auth.module';
 
 import {
-  HomeComponent
+  HomeComponent,
+  CreatePoolComponent
 } from './components';
 
 import {
@@ -42,6 +43,10 @@ export const routes: Routes = [
   {
     path: 'auth/email-verification',
     component: EmailVerificationComponent
+  },
+  {
+    path: 'create-pool',
+    component: CreatePoolComponent
   },
   {
     path: '**',

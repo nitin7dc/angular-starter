@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {RouterModule} from '@angular/router';
 
 import {EmailVerificationComponent} from './email-verification/email-verification.component';
 import {LoginComponent} from './login/login.component';
@@ -9,9 +10,6 @@ import {SignUpComponent} from './sign-up/sign-up.component';
 import {SharedModule} from '../shared-module';
 import {CoreModule} from '../core-module';
 
-import {AuthRoutes} from './auth.routing';
-
-
 @NgModule({
   declarations: [
     EmailVerificationComponent,
@@ -20,8 +18,8 @@ import {AuthRoutes} from './auth.routing';
     SignUpComponent
   ],
   imports: [
-    AuthRoutes,
     CommonModule,
+    RouterModule,
     SharedModule,
     CoreModule
   ],

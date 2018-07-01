@@ -1,13 +1,17 @@
 <mat-toolbar
+  class="header-container"
   color="primary">
 
-  <span fxFlex>{{appName}}</span>
+  <span class="app-title"
+        routerLink="/">
+    {{appName}}
+  </span>
+  <span fxFlex></span>
 
 
   <button mat-icon-button
-          color="primary"
           [matMenuTriggerFor]="menu"
-          *ngIf="!hideMenu">
+          *ngIf="authService.hasLoggedIn()">
     <mat-icon aria-label="user menu">
       more_vert
     </mat-icon>
@@ -39,7 +43,7 @@
     </button>
 
     <button mat-menu-item
-            (click)="signOut()">
+            (click)="authService.signOut()">
       <mat-icon>
         exit_to_app
       </mat-icon>
