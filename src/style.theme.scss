@@ -1,0 +1,18 @@
+@import '~@angular/material/theming';
+
+$app-custom: #a5642d;
+$app-line-color: rgba(0, 0, 0, 0.12);
+$app-max-width: 1200px;
+$app-min-height: calc(100vh - 216px);
+$app-user-menu-height: 462px;
+$app-user-account-page-height: calc(100vh - 371px);
+$app-image-background: #eaeaea;
+$app-background: #fafafa;
+
+// some sample mixins
+@mixin border-radius($radius: 6px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}

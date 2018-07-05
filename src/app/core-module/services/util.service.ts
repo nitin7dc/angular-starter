@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AbstractControl} from '@angular/forms';
 
 import {ApiService} from './api.service';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class UtilService {
@@ -15,10 +16,10 @@ export class UtilService {
    * Fetch list of countries form backend.
    * @param country
    */
-  countries(country: string) {
-    // let params = new HttpParams();
-    // params = params.set('country', country);
-    // return this.apiService.get('/location/country', params);
+  countries(country: string): Observable<any> {
+
+    return this.apiService.get(`/location/country?country=${country}`);
+
   }
 
 
@@ -27,11 +28,12 @@ export class UtilService {
    * @param country
    * @param city
    */
-  cities(country: string, city: string) {
-    // let params = new HttpParams();
-    // params = params.set('country', country);
-    // params = params.set('city', city);
-    // return this.apiService.get('/location/city', params);
+  cities(country: string, city: string): Observable<any> {
+
+    return this.apiService.get(
+      `/location/country?country=${country}&city=${city}`
+    );
+
   }
 
 
@@ -41,6 +43,7 @@ export class UtilService {
    * @returns {Promise<any>}
    */
   validatePasswordMatch(control: AbstractControl, context) {
+
     return new Promise((resolve, reject) => {
       if (control.value === context.account.get('password').value) {
         return resolve(null);
@@ -48,6 +51,7 @@ export class UtilService {
 
       return resolve({validMatch: true});
     });
+
   }
 
 

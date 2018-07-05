@@ -9,7 +9,8 @@ import {
 } from './services';
 
 import {
-  AuthGuard
+  AuthGuard,
+  AccountReadyGuard
 } from './guards';
 
 @NgModule({
@@ -25,7 +26,8 @@ import {
     UtilService,
     AuthService,
     UserService,
-    AuthGuard
+    AuthGuard,
+    AccountReadyGuard
   ]
 })
 export class CoreModule {

@@ -1,5 +1,5 @@
 import {Component, OnDestroy} from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError} from '@angular/router';
 import {Subscription} from 'rxjs';
 
 import {ApiService, AuthService} from './core-module/services';
@@ -11,11 +11,13 @@ import {ApiService, AuthService} from './core-module/services';
 export class AppComponent implements OnDestroy {
 
   authSubscription: Subscription;
+  loading = true;
 
   constructor(private apiService: ApiService,
               private router: Router,
               private authService: AuthService) {
 
+    this.listenToRouterEvents();
     this.listenToAuthEvent();
 
   }
@@ -35,6 +37,28 @@ export class AppComponent implements OnDestroy {
       .subscribe(() => {
         this.authService.signOut();
       });
+  }
+
+
+  /**
+   * Router Events.
+   */
+  listenToRouterEvents(): void {
+
+    this.router.events.subscribe((routerEvent) => {
+
+      if (routerEvent instanceof NavigationStart) {
+        this.loading = true;
+      }
+
+      if (routerEvent instanceof NavigationEnd ||
+        routerEvent instanceof NavigationCancel ||
+        routerEvent instanceof NavigationError) {
+        this.loading = false;
+      }
+
+    });
+
   }
 
 }

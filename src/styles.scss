@@ -1,4 +1,5 @@
 @import '~@angular/material/theming';
+@import "style.theme";
 
 @include mat-core();
 $my-app-primary: mat-palette($mat-purple);
@@ -7,10 +8,10 @@ $my-app-warn:    mat-palette($mat-red);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 @include angular-material-theme($my-app-theme);
 
-$primary: mat-color($my-app-primary);
-$secondary: mat-palette($mat-amber, 500);
-$accent: mat-palette($mat-deep-orange, 500);
-$warn: mat-palette($mat-red, 800);
+//$primary: mat-color($my-app-primary);
+//$secondary: mat-palette($mat-amber, 500);
+//$accent: mat-palette($mat-deep-orange, 500);
+//$warn: mat-palette($mat-red, 800);
 
 
 // Material Icons
@@ -34,27 +35,6 @@ $warn: mat-palette($mat-red, 800);
   font-size: 78px;
 }
 
-
-// App wide variables
-
-$app-custom: #a5642d;
-$app-line-color: rgba(0, 0, 0, 0.12);
-$app-max-width: 1200px;
-$app-min-height: calc(100vh - 216px);
-$app-user-menu-height: 462px;
-$app-user-account-page-height: calc(100vh - 371px);
-$app-image-background: #eaeaea;
-
-
-// some sample mixins
-
-@mixin border-radius($radius: 6px) {
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  -ms-border-radius: $radius;
-  border-radius: $radius;
-}
-
 html{
   font-family: 'Roboto', sans-serif;
 }
@@ -64,7 +44,7 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-  background: white;
+  background: $app-background;
   color: #212121;
 }
 
@@ -80,9 +60,8 @@ section {
   min-height: $app-min-height;
   z-index: 0;
   max-width: 1100px;
-  margin: 66px auto;
+  margin: 75px auto;
 }
-
 
 app-header {
   position: fixed;
@@ -91,4 +70,30 @@ app-header {
   right: 0;
   width: 100vw;
   z-index: 99;
+}
+
+.mat-form-field{
+  width: 100vw;
+  max-width: 300px;
+  margin-right: 16px;
+}
+
+.second-toolbar{
+  margin-top: 60px;
+  //background: mat-palette($mat-purple, 800);
+}
+
+[hidden]{
+  display: none !important;
+}
+
+
+.custom-snacks {
+  min-width: 50vw !important;
+  margin-bottom: 8px !important;
+
+  .mat-simple-snackbar{
+    font-size: medium;
+    line-height: 28px !important;
+  }
 }

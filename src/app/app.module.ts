@@ -14,8 +14,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
  * External libraries
  *************************************************************************************/
 
-import {CoreModule} from './core-module';
-import {SharedModule} from './shared-module/shared.module';
+
 
 /************************************************************************************
  * App Routing & Environment.
@@ -43,6 +42,8 @@ import {
  *************************************************************************************/
 
 import {AuthModule} from './auth-module/auth.module';
+import {CoreModule} from './core-module';
+import {SharedModule} from './shared-module/shared.module';
 
 /************************************************************************************
  * App Module

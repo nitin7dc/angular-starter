@@ -1,4 +1,7 @@
 <div fxLayout='column'>
   <app-header #header></app-header>
-  <router-outlet></router-outlet>
+  <app-loading [hidden]="!loading"></app-loading>
+  <div [hidden]="loading">
+    <router-outlet></router-outlet>
+  </div>
 </div>

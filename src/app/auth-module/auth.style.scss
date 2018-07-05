@@ -1,9 +1,10 @@
-@import "../../styles";
+@import "../../style.theme";
 
 .account-container {
 
   form {
 
+    background: white;
     position: relative;
     max-width: 90vw;
     width: 700px;
@@ -33,8 +34,6 @@
     .submit-button {
       width: 160px;
       height: 45px;
-      color: white !important;
-      background-color: $primary !important;
     }
 
     .submit-button[disabled] {

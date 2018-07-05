@@ -14,6 +14,7 @@ export class AlertService {
   ) {
 
     this.config.duration = 5000;
+    this.config.panelClass = 'custom-snacks';
 
     // clear alert message on route change
     router.events.subscribe(event => {

@@ -63,8 +63,8 @@ export class SignUpComponent {
   prepareForms() {
 
     this.accountForm = new FormGroup({
-      first_name: new FormControl('', [Validators.required]),
-      last_name: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
       email: new FormControl('', [
         Validators.required,
         Validators.pattern(this.utilService.EMAIL_REGEX)

@@ -22,9 +22,12 @@ export class ApiService {
   private setHeaders(): HttpHeaders {
 
     const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+
     const options = {
-      'Content-Type': 'application/json',
-      'Authorization': token || '',
+      'content-type': 'application/json',
+      'authorization': token || '',
+      'user': user || '',
       'client-time': new Date().toISOString()
     };
     return new HttpHeaders(options);

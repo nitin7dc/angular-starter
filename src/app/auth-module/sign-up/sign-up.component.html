@@ -51,8 +51,8 @@ SIGN UP COMPONENT: View
                matInput
                autofocus
                placeholder="First Name"
-               formControlName="first_name">
-        <mat-error *ngIf="accountForm.get('first_name').touched && accountForm.get('first_name').hasError('required')">
+               formControlName="firstName">
+        <mat-error *ngIf="accountForm.get('firstName').touched && accountForm.get('firstName').hasError('required')">
           <strong>required</strong>
         </mat-error>
       </mat-form-field>
@@ -63,8 +63,8 @@ SIGN UP COMPONENT: View
         <input type="text"
                matInput
                placeholder="Last Name"
-               formControlName="last_name">
-        <mat-error *ngIf="accountForm.get('last_name').touched && accountForm.get('last_name').hasError('required')">
+               formControlName="lastName">
+        <mat-error *ngIf="accountForm.get('lastName').touched && accountForm.get('lastName').hasError('required')">
           <strong>required</strong>
         </mat-error>
       </mat-form-field>

@@ -4,57 +4,37 @@
 
 export class User {
 
-  // MongoDb Object Id
-  _id?: string;
-
-
-  // Basic profile info
-  user_name = '';
-  email = '';
-  password = '';
-  first_name = '';
-  last_name = '';
-  bio_description = '';
-  contact_number = '';
-  date_of_birth: Date = null;
+  _id?;
+  firstName = '';
+  lastName = '';
   company = '';
-  timeZone = '';
+  email = '';
+  emailVerified = false;
+  profileImage = '';
 
-
-  // flags
-  is_email_verified = false;
-  is_active = true;
-
-
-  default_address = {
-    first_name: '',
-    last_name: '',
+  wallet = {
     address: '',
+    provider: ''
+  };
+
+  address = {
+    street: '',
     state: '',
     city: '',
-    zip_code: '',
-    country: ''
+    country: '',
+    pinCode: ''
   };
 
-
-  profile_image: {
-    small: '',
-    medium: '',
-    large: '',
-    regular: ''
-  };
-
-  createdAt: Date = null;
-  updatedAt: Date = null;
   subscribeToUpdates = true;
+  isAdmin = false;
+  active = false;
+  dateOfBirth: Date;
+  wallets: Array<any> = [];
 
-  constructor(user) {
-    if (!user) {
-      return;
-    }
-    Object.keys(user).forEach(key => {
-      this[key] = user[key];
-    });
+  constructor(data = {}) {
+
+    Object.assign(this, data);
+
   }
 
 }
