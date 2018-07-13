@@ -18,18 +18,22 @@ import {
   LoginComponent,
   SignUpComponent,
   PasswordResetComponent,
-  EmailVerificationComponent
+  EmailVerificationComponent,
+  TwoStepVerificationComponent,
+  TwoStepSetupComponent,
+  ChangePasswordComponent
 } from './auth-module';
+
+import {UserService} from './core-module/services';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent,
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'auth/login',
     component: LoginComponent
+  },
+  {
+    path: 'auth/two-step',
+    component: TwoStepVerificationComponent
   },
   {
     path: 'auth/sign-up',
@@ -42,6 +46,26 @@ export const routes: Routes = [
   {
     path: 'auth/email-verification',
     component: EmailVerificationComponent
+  },
+  {
+    path: 'auth/two-step-verification',
+    component: TwoStepVerificationComponent
+  },
+  {
+    path: 'settings/change-password',
+    component: ChangePasswordComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      user: UserService
+    }
+  },
+  {
+    path: 'settings/two-step-verification',
+    component: TwoStepSetupComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      user: UserService
+    }
   },
   {
     path: '**',
