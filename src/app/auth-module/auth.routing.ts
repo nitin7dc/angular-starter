@@ -1,3 +1,12 @@
+/**
+ * THIS ROUTING FILE IS CURRENTLY NOT IN USE. ROUTING IN USE IS DEFINED IN
+ * `app.routing.ts` file next to `app.module.ts` inside `app` folder.
+ *
+ * This is only for reference of how module routings should be there in
+ * application.
+ */
+
+
 import {Routes, RouterModule} from '@angular/router';
 
 import {EmailVerificationComponent} from './email-verification/email-verification.component';

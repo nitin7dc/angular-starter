@@ -31,6 +31,8 @@ export class User {
   dateOfBirth: Date;
   wallets: Array<any> = [];
 
+  twoStepVerificationEnabled = false;
+
   constructor(data = {}) {
 
     Object.assign(this, data);

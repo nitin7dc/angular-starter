@@ -40,7 +40,7 @@ export class EmailVerificationComponent {
     this.loading = true;
     this.message = 'please wait...';
     const body = {
-      toke: this.token
+      token: this.token
     };
 
     this.apiService.put('/auth/email-verification', body)

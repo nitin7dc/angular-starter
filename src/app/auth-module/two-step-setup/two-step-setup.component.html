@@ -1,0 +1,107 @@
+<!--
+
+TWO STEP VERIFICATION COMPONENT: View
+
+-->
+
+<section class="two-step-container"
+         fxLayout='column'>
+
+  <!--  Loading bar -->
+  <app-loading
+    fullScreen="true"
+    [message]="message"
+    *ngIf="loading">
+  </app-loading>
+
+  <div fxLayout="column"
+       class="wallet-list"
+       *ngIf="!loading">
+
+    <!--
+        Two Step Verification On
+    -->
+    <div fxLayout="row wrap"
+         fxLayoutAlign="center center">
+
+      <button mat-icon-button
+              mat-mini-fab
+              (click)="null"
+              color="primary">
+        <mat-icon>phone_iphone</mat-icon>
+      </button>
+
+      <h3 [hidden]="user.twoStepVerificationEnabled">
+        Two Step Verification Is Currently Off
+      </h3>
+
+      <h3 [hidden]="!user.twoStepVerificationEnabled">
+        Two Step Verification Enabled
+      </h3>
+
+      <h3 [hidden]="!(qrCode)">
+        Setup Two Step Verification
+      </h3>
+
+    </div>
+
+    <div class="qr-code"
+         fxLayout="column"
+         fxLayoutAlign="center center"
+         *ngIf="qrCode"
+         [hidden]="user.twoStepVerificationEnabled">
+
+      <img [src]="qrCode"
+           onerror="this.src='../../../assets/background.jpg'"/>
+
+      <p>Scan this QR code in your Google Authenticator App.</p>
+
+
+
+      <!--
+          Verification Code.
+      -->
+      <mat-form-field fxFlex>
+        <input matInput
+               type="text"
+               placeholder="Enter Code"
+               [(ngModel)]="otp">
+      </mat-form-field>
+
+
+      <button mat-raised-button
+              color="primary"
+              class="submit-button"
+              type="button"
+              (click)="verify()"
+              [disabled]="!otp">
+        SUBMIT CODE
+      </button>
+
+    </div>
+
+
+    <div fxLayout="row"
+         fxLayoutAlign="center center"
+         class="toggle-verification"
+         [hidden]="qrCode">
+
+      <button mat-raised-button
+              color="warn"
+              [hidden]="!user.twoStepVerificationEnabled"
+              (click)="turnOff()">
+        DISABLE TWO STEP VERIFICATION
+      </button>
+
+      <button mat-raised-button
+              [hidden]="user.twoStepVerificationEnabled"
+              color="primary"
+              (click)="turnOn()">
+        ENABLE TWO STEP VERIFICATION
+      </button>
+
+    </div>
+
+  </div>
+
+</section>

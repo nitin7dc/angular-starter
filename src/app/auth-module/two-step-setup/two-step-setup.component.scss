@@ -1,0 +1,27 @@
+@import "../../../style.theme";
+
+.two-step-container{
+
+  @include mat-elevation(4);
+  @include border-radius(4px);
+  padding: 50px 16px;
+  background: white;
+
+  h3{
+    padding-left: 8px;
+    font-weight: 400;
+  }
+
+  .toggle-verification{
+    margin: 50px 0;
+  }
+
+  .qr-code{
+    img {
+      width: 200px;
+      height: 200px;
+      margin: 40px 0 16px 0;
+      border: 2px solid black;
+    }
+  }
+}

@@ -1,0 +1,60 @@
+<!--
+
+TWO STEP VERIFICATION COMPONENT: View
+
+-->
+
+<section class="two-step-container"
+         fxLayout='column'
+         fxLayoutAlign="center center">
+
+  <!--  Loading bar -->
+  <app-loading
+    fullScreen="true"
+    [message]="message"
+    *ngIf="loading">
+  </app-loading>
+
+  <div fxLayout="column"
+       class="two-step-verification-container"
+       *ngIf="!loading">
+
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <button mat-icon-button
+              mat-mini-fab
+              (click)="null"
+              color="primary">
+        <mat-icon>phone_iphone</mat-icon>
+      </button>
+    </div>
+
+    <h3>
+      Two Step Verification Is Enabled For Your Account.
+    </h3>
+
+    <p>Enter Code From Google Authenticator App.</p>
+
+
+    <!--
+        Verification Code.
+    -->
+    <mat-form-field fxFlex>
+      <input matInput
+             type="text"
+             placeholder="Enter Code"
+             [(ngModel)]="otp">
+    </mat-form-field>
+
+
+    <button mat-raised-button
+            color="primary"
+            class="submit-button"
+            type="button"
+            (click)="verify()"
+            [disabled]="!otp">
+      SUBMIT CODE
+    </button>
+
+  </div>
+
+</section>

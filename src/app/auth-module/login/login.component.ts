@@ -78,18 +78,28 @@ export class LoginComponent {
     this.apiService.post('/auth/login', this.user.value)
       .subscribe(data => {
 
-        if (data.user.emailVerified) {
-          this.authService.set(data.token);
-          this.userService.set(data.user);
-          return this.router.navigateByUrl('/');
+        // Email verification is pending.
+        if (!data.emailVerified) {
+          this.loading = false;
+          this.message = '';
+          this.user.reset();
+          return this.alertService.info(`
+            Please verify your email first. Verification email sent.
+          `);
         }
 
-        this.loading = false;
-        this.message = '';
-        this.user.reset();
-        this.alertService.info(`
-        Please verify your email first. Verification email sent.
-        `);
+
+        // two step verification is enabled ask for code.
+        if (data.twoStepVerificationEnabled) {
+          this.authService.set(data.token);
+          return this.router.navigateByUrl('/auth/two-step-verification');
+        }
+
+
+        // normal login.
+        this.authService.set(data.token);
+        this.userService.set(data.user);
+        this.router.navigateByUrl('/');
 
       }, error => {
 
