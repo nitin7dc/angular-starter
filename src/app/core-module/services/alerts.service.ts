@@ -6,15 +6,16 @@ import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 export class AlertService {
 
   private keepAfterNavigationChange = false;
-  private config = new MatSnackBarConfig();
+  private config;
 
   constructor(
     private router: Router,
     public snackBar: MatSnackBar
   ) {
 
+    this.config = new MatSnackBarConfig();
     this.config.duration = 5000;
-    this.config.panelClass = 'custom-snacks';
+    this.config.extraClasses = ['custom-snack-bar'];
 
     // clear alert message on route change
     router.events.subscribe(event => {
@@ -41,14 +42,14 @@ export class AlertService {
     if (response && response.error && response.error.message) {
       message = response.error.message;
     }
-    this.snackBar.open(message, 'OK', this.config);
+    Promise.resolve(null).then(() => this.snackBar.open(message, 'OK', this.config));
 
   }
 
   info(message?: string, keepAfterNavigationChange = false) {
 
     this.keepAfterNavigationChange = keepAfterNavigationChange;
-    this.snackBar.open(message, 'OK', this.config);
+    Promise.resolve(null).then(() => this.snackBar.open(message, 'OK', this.config));
 
   }
 

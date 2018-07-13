@@ -66,6 +66,11 @@ export class UserService implements Resolve<Observable<any>> {
   }
 
 
+  reset() {
+    this.currentUser.next(new User({}));
+  }
+
+
   /**
    * Update user.
    * @param context

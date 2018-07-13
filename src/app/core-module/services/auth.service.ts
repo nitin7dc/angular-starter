@@ -1,17 +1,19 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
+import {UserService} from './user.service';
 
 
 @Injectable()
 export class AuthService {
 
   authState = new BehaviorSubject<boolean>(false);
+  token;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService: UserService) {
 
-    const token = localStorage.getItem('token');
-    this.authState.next(!!token);
+    this.token = localStorage.getItem('token');
+    this.authState.next(!!this.token);
 
   }
 
@@ -24,6 +26,7 @@ export class AuthService {
 
     localStorage.setItem('token', token);
     this.authState.next(true);
+    this.token = token;
 
   }
 
@@ -33,7 +36,9 @@ export class AuthService {
   signOut(): void {
 
     localStorage.clear();
+    this.token = null;
     this.authState.next(false);
+    this.userService.reset();
     this.router.navigateByUrl('/auth/login');
 
   }

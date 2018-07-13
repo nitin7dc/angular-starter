@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {AbstractControl} from '@angular/forms';
-
+import {AbstractControl, FormGroup} from '@angular/forms';
 import {ApiService} from './api.service';
 import {Observable} from 'rxjs';
+
 
 @Injectable()
 export class UtilService {
@@ -10,6 +10,16 @@ export class UtilService {
   EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   constructor(private apiService: ApiService) {
+  }
+
+  public static match(field: string, confirmField: string): Function {
+
+    return (group: FormGroup): { [key: string]: any } => {
+      if (group.controls[field] && group.controls[confirmField]) {
+        return (group.controls[field].value !== group.controls[confirmField].value) ? {'match': true} : null;
+      }
+    };
+
   }
 
   /**
@@ -33,24 +43,6 @@ export class UtilService {
     return this.apiService.get(
       `/location/country?country=${country}&city=${city}`
     );
-
-  }
-
-
-  /**
-   * Validate if password & confirmPassword match
-   * @param {AbstractControl} control
-   * @returns {Promise<any>}
-   */
-  validatePasswordMatch(control: AbstractControl, context) {
-
-    return new Promise((resolve, reject) => {
-      if (control.value === context.account.get('password').value) {
-        return resolve(null);
-      }
-
-      return resolve({validMatch: true});
-    });
 
   }
 
