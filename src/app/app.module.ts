@@ -1,7 +1,7 @@
 /***
  * App Module File.
  *
- * All angular dependencies, app components, app services, app module & external libraries
+ * All angular dependencies, app feature-module, app services, app module & external libraries
  * are here.
  */
 
@@ -30,7 +30,7 @@ import {AppComponent} from './app.component';
 import {
   HeaderComponent,
   HomeComponent
-} from './components';
+} from './feature-module';
 
 /************************************************************************************
  * App Services.

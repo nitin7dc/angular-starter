@@ -1,4 +1,4 @@
-/***
+``/***
  * App Routing file.
  *
  * All application routes are here with Guards.
@@ -12,7 +12,7 @@ import {AuthModule} from './auth-module/auth.module';
 
 import {
   HomeComponent
-} from './components';
+} from './feature-module';
 
 import {
   LoginComponent,
@@ -62,6 +62,14 @@ export const routes: Routes = [
   {
     path: 'settings/two-step-verification',
     component: TwoStepSetupComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      user: UserService
+    }
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
     canActivate: [AuthGuard],
     resolve: {
       user: UserService

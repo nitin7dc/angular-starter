@@ -8,7 +8,6 @@ import {
   UtilService,
   AuthService,
   UserService,
-  Web3Service,
   AuthInterceptorService
 } from './services';
 
@@ -32,7 +31,6 @@ import {
     UserService,
     AuthGuard,
     AccountReadyGuard,
-    Web3Service,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
