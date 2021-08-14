@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import "../../style.theme";
 
 .account-container {
@@ -11,7 +12,7 @@
     padding: 30px 45px;
     margin: 0 auto;
     background: white;
-    @include mat-elevation(8);
+    @include mat.elevation(8);
     @include border-radius(8px);
 
     a {

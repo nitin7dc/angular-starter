@@ -1,8 +1,9 @@
+@use '~@angular/material' as mat;
 @import "../../../style.theme";
 
 .two-step-container{
 
-  @include mat-elevation(4);
+  @include mat.elevation(4);
   @include border-radius(4px);
   padding: 50px 16px;
   background: white;
