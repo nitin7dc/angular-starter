@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Router, NavigationStart} from '@angular/router';
-import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 
 @Injectable()
 export class AlertService {
 
   private keepAfterNavigationChange = false;
-  private config;
+  private readonly config;
 
   constructor(
     private router: Router,
@@ -42,14 +42,15 @@ export class AlertService {
     if (response && response.error && response.error.message) {
       message = response.error.message;
     }
-    Promise.resolve(null).then(() => this.snackBar.open(message, 'OK', this.config));
+
+    this.snackBar.open(message, 'OK', this.config);
 
   }
 
   info(message?: string, keepAfterNavigationChange = false) {
 
     this.keepAfterNavigationChange = keepAfterNavigationChange;
-    Promise.resolve(null).then(() => this.snackBar.open(message, 'OK', this.config));
+    this.snackBar.open(message, 'OK', this.config);
 
   }
 

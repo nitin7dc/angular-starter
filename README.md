@@ -1,5 +1,5 @@
 # Angular Starter Project
-- Angular 6
+- Angular 10
 - Angular Material
 - Angular Flex Layout
 - Email/Password authentication
@@ -7,8 +7,6 @@
 - Two Step Verification
 - Core Module/Feature Module/Shared Module/Lazy Loading
 
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 ## Development server
 
