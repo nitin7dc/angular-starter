@@ -1,6 +1,6 @@
 import {Component, OnDestroy, ViewChild, OnInit, Output, EventEmitter} from '@angular/core';
 import {Router} from '@angular/router';
-import {MatMenuTrigger} from '@angular/material';
+import { MatMenuTrigger } from '@angular/material/menu';
 import {Subscription} from 'rxjs';
 
 import {AuthService} from '../../core-module/services';
@@ -17,10 +17,10 @@ export class HeaderComponent implements OnDestroy, OnInit {
 
   appName = environment.appName;
 
-  @ViewChild('menu') menu: MatMenuTrigger;
+  @ViewChild('menu', { static: true }) menu: MatMenuTrigger;
   @Output() toggleMenu = new EventEmitter();
 
-  constructor(protected authService: AuthService,
+  constructor(public authService: AuthService,
               private router: Router) {
 
   }

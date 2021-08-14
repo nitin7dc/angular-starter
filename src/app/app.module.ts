@@ -20,7 +20,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
  * App Routing & Environment.
  *************************************************************************************/
 
-import {routing} from './app.routing';
+import { AppRoutingModule } from './app-routing.module';
 
 /************************************************************************************
  * App Components
@@ -59,7 +59,7 @@ import {SharedModule} from './shared-module/shared.module';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    routing,
+    AppRoutingModule,
     CoreModule,
     SharedModule,
     AuthModule

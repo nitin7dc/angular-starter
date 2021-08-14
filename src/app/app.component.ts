@@ -3,6 +3,8 @@ import {Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationErro
 import {Subscription} from 'rxjs';
 
 import {ApiService, AuthService} from './core-module/services';
+import {Title} from '@angular/platform-browser';
+import {environment} from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +16,11 @@ export class AppComponent implements OnDestroy {
   loading = true;
 
   constructor(private apiService: ApiService,
+              private title: Title,
               private router: Router,
               private authService: AuthService) {
 
+    this.title.setTitle(environment.appName);
     this.listenToRouterEvents();
     this.listenToAuthEvent();
 

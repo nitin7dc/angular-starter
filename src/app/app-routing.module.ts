@@ -1,32 +1,20 @@
-``/***
- * App Routing file.
- *
- * All application routes are here with Guards.
- */
-
-import {ModuleWithProviders} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-
-import {AuthGuard} from './core-module/guards/index';
-import {AuthModule} from './auth-module/auth.module';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import {
-  HomeComponent
-} from './feature-module';
-
-import {
-  LoginComponent,
-  SignUpComponent,
-  PasswordResetComponent,
+  ChangePasswordComponent,
   EmailVerificationComponent,
-  TwoStepVerificationComponent,
-  TwoStepSetupComponent,
-  ChangePasswordComponent
+  LoginComponent,
+  PasswordResetComponent,
+  SignUpComponent, TwoStepSetupComponent,
+  TwoStepVerificationComponent
 } from './auth-module';
 
+import {AuthGuard} from './core-module/guards';
 import {UserService} from './core-module/services';
+import {HomeComponent} from './feature-module'; // CLI imports router
 
-export const routes: Routes = [
+const routes: Routes = [
   {
     path: 'auth/login',
     component: LoginComponent
@@ -81,4 +69,9 @@ export const routes: Routes = [
   }
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
+// configures NgModule imports and exports
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

@@ -2,17 +2,11 @@
 @import "style.theme";
 
 @include mat-core();
-$my-app-primary: mat-palette($mat-purple);
+$my-app-primary: mat-palette($mat-grey, 800);
 $my-app-accent:  mat-palette($mat-lime);
 $my-app-warn:    mat-palette($mat-red);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 @include angular-material-theme($my-app-theme);
-
-//$primary: mat-color($my-app-primary);
-//$secondary: mat-palette($mat-amber, 500);
-//$accent: mat-palette($mat-deep-orange, 500);
-//$warn: mat-palette($mat-red, 800);
-
 
 // Material Icons
 .material-icons.md-18 {
